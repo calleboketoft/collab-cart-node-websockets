@@ -1,0 +1,15 @@
+{
+  "name": "collab-cart-node-websockets",
+  "version": "1.0.0",
+  "description": "Collaborative Cart based on Node and Web Sockets",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.13.0"
+  }
+}

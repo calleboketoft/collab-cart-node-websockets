@@ -1,0 +1,3 @@
+- npm install
+- npm start
+- navigate two browser tabs to http://localhost:3000

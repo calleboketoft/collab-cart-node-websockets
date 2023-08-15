@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Collaborative Cart</title>
+</head>
+<body>
+  <h1>Collaborative Cart</h1>
+  <input type="text" id="itemInput" placeholder="Enter an item">
+  <button id="addItemButton">Add to Cart</button>
+  <ul id="cartList"></ul>
+
+  <script>
+    const socket = new WebSocket(`ws://${window.location.host}`);
+
+    const itemInput = document.getElementById('itemInput');
+    const addItemButton = document.getElementById('addItemButton');
+    const cartList = document.getElementById('cartList');
+
+    socket.addEventListener('message', (event) => {
+      const cartItems = JSON.parse(event.data);
+      updateCartList(cartItems);
+    });
+
+    addItemButton.addEventListener('click', () => {
+      const item = itemInput.value;
+      if (item.trim() !== '') {
+        socket.send(JSON.stringify(item));
+        itemInput.value = '';
+      }
+    });
+
+    function updateCartList(cartItems) {
+      cartList.innerHTML = cartItems.map((item) => `<li>${item}</li>`).join('');
+    }
+  </script>
+</body>
+</html>
